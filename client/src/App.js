@@ -1,5 +1,6 @@
 import React from "react";
-import './App.css';
+// No longer needed with bootstrap
+//import './App.css';
 
 function App() {
   return (
