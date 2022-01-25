@@ -1,37 +1,31 @@
 import React from "react";
 // No longer needed with bootstrap
 //import './App.css';
+import { Router } from '@reach/router';
+import Landing from './views/Landing';
+import Login from './views/LoginAndReg';
+import UserProfile from './views/UserProfile';
+import EditUserProfile from './views/EditPetProfile';
+import AllUserProfiles from './views/AllUserProfiles';
+import PetProfile from './views/PetProfile';
+import EditPetProfile from './views/EditPetProfile';
+import AllPetProfiles from './views/AllPetProfiles';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>sadsa</h1>
-      </header>
-      <div className="container">
-        <button type="button" class="btn btn-primary">Primary</button> <br />
-        <button type="button" class="btn btn-secondary">Secondary</button> <br />
-        <button type="butt on" class="btn btn-success">Success</button> <br />
-        <button type="button" class="btn btn-danger">Danger</button> <br />
-        <button type="button" class="btn btn-warning">Warning</button> <br />
-        <button type="button" class="btn btn-info">Info</button> <br />
-        <button type="button" class="btn btn-light">Light</button> <br />
-        <button type="button" class="btn btn-dark">Dark</button> <br />
-        <button type="button" class="btn btn-link">Link</button>
-
-        <br />
-        <div class="card" >
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-          </div>
-        </div>
-      </div>
+    <div >
+      <Router>
+        <Landing path="/" />
+        <Login path="/login" />
+        {/* Object specific pages */}
+        <UserProfile path="/user/:id" />
+        <EditUserProfile path="/user/:id/edit" />
+        <AllUserProfiles path="/users" />
+        <PetProfile path="/pet/:id" />
+        <EditPetProfile path="/pet/:id/edit" />
+        <AllPetProfiles path="/pets" />
+      </Router>
     </div>
-
-
   );
 }
 
