@@ -3,7 +3,7 @@ import React from "react";
 //import './App.css';
 import { Router } from '@reach/router';
 import Landing from './views/Landing';
-import Login from './views/LoginAndReg';
+import Login from './components/Login';
 import UserProfile from './views/UserProfile';
 import EditUserProfile from './views/EditPetProfile';
 import AllUserProfiles from './views/AllUserProfiles';

@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 
 const register = (req, res) => {
     const user = new User(req.body);
-
     user
         .save()
         .then(() => {
