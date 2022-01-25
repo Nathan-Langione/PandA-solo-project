@@ -13,12 +13,20 @@ const Register = (props) => {
 
     const register = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/user/register', {
-        },
+        const newUser = {
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword
+        };
+        console.log(newUser)
+        axios.post('http://localhost:8000/api/user/register',
+            newUser,
             { withCredentials: true })
             .then(response => {
                 console.log("register data", response.data);
-
+                console.log("success")
             })
             .catch(err => {
                 const errorResponse = err.response.data.errors; // Get the errors from err.response.data
@@ -38,14 +46,13 @@ const Register = (props) => {
                     <h3>Go back to the landing</h3>
                 </Link>
             </header>
-
             <div className="container">
                 <div className="row">
                     <div className="col">
 
                         <form onSubmit={register}>
                             <h2>User Registration</h2>
-                            {errors.map((err, index) => <p key={index}>{err}</p>)}
+
                             <div>
                                 <label>First Name </label>
                                 <input
@@ -90,6 +97,7 @@ const Register = (props) => {
                                 Submit
                             </button>
                         </form>
+                        {errors.map((err, index) => <p key={index}>{err}</p>)}
                     </div>
                 </div>
 
