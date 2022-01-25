@@ -6,22 +6,28 @@ import { navigate, Link, } from '@reach/router';
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errMessage, setErrMessage] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const login = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/admin/login', {
+        axios.post('http://localhost:8000/api/user/login', {
             email: email,
             password: password
         },
             { withCredentials: true })
             .then(response => {
                 console.log("login data", response.data);
-                navigate(`/admin/home`)
+                navigate(`/`)
             })
-            .catch(error => {
-                console.log("problem with login.js", error);
-                setErrMessage(error.response.data.msg);
+            .catch(err => {
+                console.log("problem with login.js", err);
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
             })
     };
     return (
@@ -36,26 +42,27 @@ const Login = (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col s6">
-                        <p>{errMessage ? errMessage : ""}</p>
+                        {errors.map((err, index) => <p key={index}>{err}</p>)}
                         <form onSubmit={login}>
-                            <h3>Welcome Back! Please log in </h3>
-                            <div className="input-field col s12 input-field input[type=text]:focus">
+                            <h3>Welcome Back, Please log in! </h3>
+                            <div>
+                                <label>Email</label>
                                 <input
                                     type="text"
                                     placeholder="Enter Email Address"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)} />
-                                <label>Email:</label>
                             </div>
-                            <div className="input-field col s12 blue-field">
+                            <div>
+                                <label>Password:</label>
                                 <input
                                     type="password"
                                     placeholder="Password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)} />
-                                <label>Password:</label>
                             </div>
-                            <button className="btn waves-effect waves-light blue" type="submit" name="action">Submit
+                            <button type="submit" name="action">
+                                Submit
                             </button>
                         </form>
                     </div>

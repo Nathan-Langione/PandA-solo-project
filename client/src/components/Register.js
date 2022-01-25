@@ -9,22 +9,25 @@ const Register = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [errMessage, setErrMessage] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const register = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:000/api/user/register', {
-            email: email,
-            password: password
+        axios.post('http://localhost:8000/api/user/register', {
         },
             { withCredentials: true })
             .then(response => {
                 console.log("register data", response.data);
-                navigate(`/admin/home`)
+
             })
-            .catch(error => {
-                console.log("problem with register.js", error);
-                setErrMessage(error.response.data.msg);
+            .catch(err => {
+                const errorResponse = err.response.data.errors; // Get the errors from err.response.data
+                const errorArr = []; // Define a temp error array to push the messages in
+                for (const key of Object.keys(errorResponse)) { // Loop through all errors and get the messages
+                    errorArr.push(errorResponse[key].message)
+                }
+                // Set Errors
+                setErrors(errorArr);
             })
     };
     return (
@@ -38,10 +41,11 @@ const Register = (props) => {
 
             <div className="container">
                 <div className="row">
-                    <div className="col s6">
-                        <p>{errMessage ? errMessage : ""}</p>
+                    <div className="col">
+
                         <form onSubmit={register}>
                             <h2>User Registration</h2>
+                            {errors.map((err, index) => <p key={index}>{err}</p>)}
                             <div>
                                 <label>First Name </label>
                                 <input
@@ -82,11 +86,13 @@ const Register = (props) => {
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
-                            <button type="submit" name="action">Submit
+                            <button type="submit" name="action">
+                                Submit
                             </button>
                         </form>
                     </div>
                 </div>
+
             </div>
         </>
     )
