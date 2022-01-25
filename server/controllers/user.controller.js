@@ -53,7 +53,7 @@ const logout = (req, res) => {
     res.json({ msg: "usertoken cookie cleared" });
 };
 
-/* const getAllUsers = (req, res) => {
+const getAllUsers = (req, res) => {
     User.find()
         .then((allUsers) => res.json(allUsers))
         .catch((err) => console.log(err));
@@ -81,14 +81,14 @@ const deleteUser = (req, res) => {
     User.deleteOne({ _id: req.params.id })
         .then((result) => res.json(result))
         .catch((err) => res.json({ message: "Something went wrong", error: err }));
-}; */
+};
 
 module.exports = {
     register,
     login,
     logout,
-    /* getAllUsers,
+    getAllUsers,
     getOneUser,
     updateUser,
-    deleteUser, */
+    deleteUser,
 };
