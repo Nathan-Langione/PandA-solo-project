@@ -10,7 +10,11 @@ const Landing = () => {
             <header className="container">
                 <h1>Boston Common dog park</h1>
                 <Link to={"/login"}>
-                    Login
+                    <h3>Login</h3>
+                </Link>
+
+                <Link to={"/register"}>
+                    <h3>Register</h3>
                 </Link>
             </header>
 
