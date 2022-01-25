@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// near the top is a good place to group our imports
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
@@ -53,5 +52,5 @@ UserSchema.pre('save', function (next) {
         });
 });
 
-
-module.exports = mongoose.model('Pet', PetSchema);
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
