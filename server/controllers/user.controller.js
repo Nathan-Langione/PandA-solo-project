@@ -8,7 +8,7 @@ const register = (req, res) => {
         .then(user => {
             const userToken = jwt.sign({
                 id: user._id
-            }, process.env.SECRET_KEY);
+            }, process.env.JWT_SECRET);
 
             res
                 .cookie("usertoken", userToken, secret, {
@@ -17,6 +17,7 @@ const register = (req, res) => {
                 .json({ msg: "success!", user: user });
         })
         .catch(err => res.json(err));
+
 };
 
 const login = async (req, res) => {

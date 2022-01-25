@@ -4,7 +4,7 @@ import Landing from './views/Landing';
 import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './views/UserProfile';
-import EditUserProfile from './views/EditPetProfile';
+import EditUserProfile from './views/EditUserProfile';
 import AllUserProfiles from './views/AllUserProfiles';
 
 

@@ -25,9 +25,6 @@ const UserSchema = new mongoose.Schema({
         required: [true, "Password is required"],
         minlength: [2, "Password must be 2 characters or longer"]
     },
-    bio: {
-        type: String,
-    },
 
 }, { timestamps: true });
 
