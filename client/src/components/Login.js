@@ -17,7 +17,7 @@ const Login = (props) => {
             { withCredentials: true })
             .then(response => {
                 console.log("login data", response.data);
-                navigate(`/`)
+                navigate(`/users`)
             })
             .catch(err => {
                 console.log("problem with login.js", err);
@@ -34,40 +34,32 @@ const Login = (props) => {
         <>
             <header className="container">
                 <h1>Boston Common dog park</h1>
+            </header>
+            <hr />
+            <div className="container">
+                <div class="form-signin">
+                    {errors.map((err, index) => <p key={index}>{err}</p>)}
+                    <form onSubmit={login}>
+                        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" value={email}
+                                onChange={(e) => setEmail(e.target.value)} />
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" value={password}
+                                onChange={(e) => setPassword(e.target.value)} />
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                    </form>
+                </div >
+            </div>
+            <footer className="container">
                 <Link to={"/"}>
                     Go back to the landing
                 </Link>
-            </header>
-
-            <div className="container">
-                <div className="row">
-                    <div className="col s6">
-                        {errors.map((err, index) => <p key={index}>{err}</p>)}
-                        <form onSubmit={login}>
-                            <h3>Welcome Back, Please log in! </h3>
-                            <div>
-                                <label>Email</label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Email Address"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Password:</label>
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)} />
-                            </div>
-                            <button type="submit" name="action">
-                                Submit
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            </footer>
         </>
     )
 };

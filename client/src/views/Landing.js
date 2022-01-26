@@ -8,37 +8,55 @@ const Landing = () => {
     return (
         <>
             <header className="container">
-                <h1>Boston Common dog park</h1>
-                <Link to={"/login"}>
-                    <h3>Login</h3>
-                </Link>
-
-                <Link to={"/register"}>
-                    <h3>Register</h3>
-                </Link>
+                <div class="row">
+                    <div class="col-6">
+                        <h1>Boston Common dog park</h1>
+                    </div>
+                    <div class="col">
+                        <Link to={"/login"}>
+                            <h3>Login</h3>
+                        </Link>
+                    </div>
+                    <div class="col">
+                        <Link to={"/register"}>
+                            <h3>Register</h3>
+                        </Link>
+                    </div>
+                </div>
             </header>
+            <hr />
 
             <div className="container">
-                <button type="button" class="btn btn-primary">Primary</button> <br />
-                <button type="button" class="btn btn-secondary">Secondary</button> <br />
-                <button type="butt on" class="btn btn-success">Success</button> <br />
-                <button type="button" class="btn btn-danger">Danger</button> <br />
-                <button type="button" class="btn btn-warning">Warning</button> <br />
-                <button type="button" class="btn btn-info">Info</button> <br />
-                <button type="button" class="btn btn-light">Light</button> <br />
-                <button type="button" class="btn btn-dark">Dark</button> <br />
-                {/* <button type="button" class="btn btn-link">Link</button> */}
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h3>Informational links</h3>
+                        <ul>
+                            <li> link</li>
+                            <li> link</li>
+                            <li> link</li>
+                            <li> link</li>
+                            <li> link</li>
+                            <li> link</li>
+                            <li> link</li>
+                            <li> link</li>
+                        </ul>
 
 
-                <br />
-                <div class="card" >
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                    <div class="col">
+                        <div className="img-responsive">
+                            <img src="https://friendsofthepublicgarden.org/wp-content/uploads/2018/06/bostoncommonoverview@kylekleinphoto-1.jpg" alt="new" />
+                        </div>
                     </div>
                 </div>
             </div>
+
+
+            <footer className="container">
+                <Link to={"/"}>
+                    Go back to the landing
+                </Link>
+            </footer>
         </>
     )
 }

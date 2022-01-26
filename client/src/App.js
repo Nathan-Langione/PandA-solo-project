@@ -5,7 +5,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './views/UserProfile';
 import EditUserProfile from './views/EditUserProfile';
-import AllUserProfiles from './views/AllUserProfiles';
+import AllUserProfiles from './components/UserList';
 
 
 function App() {
