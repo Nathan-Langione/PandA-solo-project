@@ -1,6 +1,6 @@
 import React from "react";
 import { Router } from '@reach/router';
-import Landing from './views/Landing';
+import Home from './views/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import UserProfile from './views/UserProfile';
@@ -12,7 +12,7 @@ function App() {
   return (
     <div >
       <Router>
-        <Landing path="/" />
+        <Home path="/" />
         <Login path="/login" />
         <Register path="/register" />
         {/* Object specific pages */}

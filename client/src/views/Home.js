@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from '@reach/router';
 
 
-const Landing = () => {
+const Home = () => {
 
 
     return (
@@ -54,10 +54,10 @@ const Landing = () => {
 
             <footer className="container">
                 <Link to={"/"}>
-                    Go back to the landing
+                    Go back to the Home page
                 </Link>
             </footer>
         </>
     )
 }
-export default Landing;
+export default Home;

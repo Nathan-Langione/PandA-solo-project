@@ -57,7 +57,7 @@ const Login = (props) => {
             </div>
             <footer className="container">
                 <Link to={"/"}>
-                    Go back to the landing
+                    Go back to the Home page
                 </Link>
             </footer>
         </>
