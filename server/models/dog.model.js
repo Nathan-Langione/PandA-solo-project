@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PetSchema = new mongoose.Schema({
+const DogSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Name is required"],
@@ -10,7 +10,7 @@ const PetSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Age is required"],
         min: [0, "Age must be greater than 0!"],
-        max: [25, "Your pet probably isn't older than 25"]
+        max: [25, "Your dog probably isn't older than 25"]
     },
     breed: {
         type: String,
@@ -28,4 +28,4 @@ const PetSchema = new mongoose.Schema({
         minLength: [2, "Description must be 2 characters or more!"]
     }
 }, { timestamps: true });
-module.exports = mongoose.model('Pet', PetSchema);
+module.exports = mongoose.model('Dog', DogSchema);

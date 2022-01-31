@@ -22,7 +22,7 @@ require("./config/mongoose.config");
 
 // Add all of the routes
 require('./routes/user.routes')(app);
-
+require('./routes/dog.routes')(app);
 // Start the server listening on desired port
 app.listen(8000, () => {
     console.log("Listening at Port 8000")
