@@ -57,7 +57,7 @@ const getAllUsers = (req, res) => {
 };
 
 const getOneUser = (req, res) => {
-    User.findOne({ _id: req.params._id })
+    User.findOne({ _id: req.params.id })
         .then((queriedUser) => res.json(queriedUser))
         .catch((err) => console.log(err));
 };
@@ -75,6 +75,7 @@ const updateUser = (req, res) => {
 };
 
 const deleteUser = (req, res) => {
+    console.log(req.params)
     User.deleteOne({ _id: req.params.id })
         .then((result) => res.json(result))
         .catch((err) => res.json({ message: "Something went wrong", error: err }));

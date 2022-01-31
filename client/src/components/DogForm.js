@@ -41,11 +41,7 @@ const DogForm = (props) => {
                         type="text"
                         name="age"
                         value={age}
-                        onChange={(e) => {
-                            let str1 = e.target.value;
-                            let str2 = str1.charAt(0).toUpperCase() + str1.slice(1);
-                            setAge(str2)
-                        }}
+                        onChange={(e) => setAge(e.target.value)}
                     />
                 </div>
                 <div className="form-div">
@@ -76,7 +72,7 @@ const DogForm = (props) => {
                     />
                 </div>
                 <p>
-                    <Link to="/">
+                    <Link to="/dogs">
                         <button type="button">
                             Cancel
                         </button>

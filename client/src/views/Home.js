@@ -7,6 +7,11 @@ const Home = () => {
 
     return (
         <div className="container-fluid min-vh-100">
+            <div className=" row text-center">
+                <h1 >The Boston Common Dog Park</h1>
+                <h4>A social networking website</h4>
+            </div>
+
             <header className="row flex-nowrap">
                 {/* Navbar start */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-white">
@@ -21,11 +26,19 @@ const Home = () => {
                             <li className="nav-item">
                                 <a className="nav-link" href="/register">Register</a>
                             </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/users">All Users</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/dogs">All Dogs</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
                 {/* Navbar end */}
             </header>
+
+            <hr />
 
             <div className="row flex-nowrap">
                 {/* Start of links */}
@@ -60,8 +73,6 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="col py-3 text-center">
-                    <h1 className="mb-3">The Boston Common Dog Park</h1>
-                    <h4 className="mb-3">A social networking website</h4>
                     <img className="mb-3" src="https://friendsofthepublicgarden.org/wp-content/uploads/2018/06/bostoncommonoverview@kylekleinphoto-1.jpg" alt="new" />
                 </div>
             </div>

@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from '@reach/router';
 import axios from 'axios';
+import { Link } from '@reach/router';
+import { navigate } from '@reach/router';
+import LikeButton from '../components/LikeButton';
 
-const UserList = (props) => {
-    const [users, setUsers] = useState([]);
+const DogProfile = (props) => {
+    const [dogInfo, setDogInfo] = useState({});
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/users', { withCredentials: true })
+        axios.get("http://localhost:8000/api/dog/" + props.id)
             .then(res => {
-                setUsers(res.data);
-            }
-            );
-
-    }, [])
-    const removeFromDom = userId => {
-        // Lint wants !== instead of !=
+                setDogInfo({
+                    ...res.data
+                });
+                setLoaded(true);
+            })
         // eslint-disable-next-line
-        setUsers(users.filter(user => user._id != userId))
-    }
+    }, [])
+
     return (
         <div className="container-fluid min-vh-100">
             <div className=" row text-center">
@@ -53,37 +54,26 @@ const UserList = (props) => {
 
             <hr />
 
-            <div className="row flex-nowrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user, idx) => {
-                            return (
-                                <tr key={idx}>
-                                    <td>{user.firstName} {user.lastName} {user._id}</td>
-                                    <td>
-                                        <Link to={"/user/" + user._id}>
-                                            User Proflie
-                                        </Link> {/* |
-                                        <Link to={"/user/" + user._id + "/edit"}>
-                                            Edit
-                                        </Link> */}
-                                    </td>
-                                </tr>
-                            )
-                        })}
-                    </tbody>
-                </table>
-            </div >
+            <div className="row ">
+                <> {loaded && (<h2>Details about: {dogInfo.name}</h2>)}</>
+
+            </div>
+            <div className="row ">
+
+                <>
+                    <p>Dog age : {dogInfo.age}</p>
+                    <p>Dog breed : {dogInfo.breed}</p>
+                    <p>Dog color : {dogInfo.color}</p>
+                    <p>Dog description: {dogInfo.description}</p>
+                </>
+                <LikeButton
+                    name={dogInfo.name}
+                />
+            </div>
             <footer className="row flex-nowrap text-center">
                 <h1> This is where the footer information goes </h1>
             </footer>
         </div >
     )
 }
-export default UserList;
+export default DogProfile;

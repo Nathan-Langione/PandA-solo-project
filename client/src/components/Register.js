@@ -40,12 +40,39 @@ const Register = (props) => {
             })
     };
     return (
-        <>
-            <header className="container">
-                <h1>Boston Common dog park</h1>
+        <div className="container-fluid min-vh-100">
+            <div className=" row text-center">
+                <h1 >The Boston Common Dog Park</h1>
+                <h4>A social networking website</h4>
+            </div>
+
+            <header className="row flex-nowrap">
+                {/* Navbar start */}
+                <nav className="navbar navbar-expand-lg navbar-light bg-white">
+                    <div className="container-fluid">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item active">
+                                <a className="nav-link" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/login">Login</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/register">Register</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/users">All Users</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/dogs">All Dogs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                {/* Navbar end */}
             </header>
 
-
+            <hr />
 
             <div className="container">
                 <div class="form-signin">
@@ -82,12 +109,10 @@ const Register = (props) => {
                 </div >
             </div>
 
-            <footer className="container">
-                <Link to={"/"}>
-                    Go back to the Home page
-                </Link>
+            <footer className="row flex-nowrap text-center">
+                <h1> This is where the footer information goes </h1>
             </footer>
-        </>
+        </div>
     )
 };
 

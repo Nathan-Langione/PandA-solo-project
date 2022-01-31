@@ -1,20 +1,29 @@
-// eslint-disable-next-line
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { navigate } from '@reach/router';
 import { Link } from '@reach/router';
 import DogForm from '../components/DogForm';
 
-const Create = () => {
-    const [dogs, setDogs] = useState([]);
+const EditDogProfile = (props) => {
+    const { id } = props;
+    const [dog, setDog] = useState();
+    const [loaded, setLoaded] = useState(false);
     const [errors, setErrors] = useState([]);
 
-    const createDog = dog => {
-        axios.post('http://localhost:8000/api/dog', dog)
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/dog/' + id)
+            .then(res => {
+                setDog(res.data);
+                setLoaded(true);
+            })
+        // eslint-disable-next-line
+    }, [loaded]);
+
+    const updateDog = dog => {
+        axios.put('http://localhost:8000/api/dog/' + id, dog)
             .then(res => {
                 console.log(res);
-                setDogs([...dogs, res.data]);
-                navigate("/");
+                navigate("/dog/" + id);
             })
             .catch(err => {
                 const errorResponse = err.response.data.errors; // Get the errors from err.response.data
@@ -24,9 +33,9 @@ const Create = () => {
                 }
                 // Set Errors
                 setErrors(errorArr);
+                setLoaded(false);
             })
     }
-
     return (
         <div className="container-fluid min-vh-100">
             <div className=" row text-center">
@@ -62,20 +71,26 @@ const Create = () => {
 
             <hr />
 
-            <div className="row text-center">
-                <DogForm
-                    onSubmitProp={createDog}
-                    initialName=""
-                    initialType=""
-                    initialDescription=""
-                />
-                {errors.map((err, index) => <p key={index}>{err}</p>)}
+            <div className="row">
+                {loaded && (<h2>Edit {dog.name}</h2>)}
             </div>
-            <footer className="row flex-nowrap text-center">
-                <h1> This is where the footer information goes </h1>
-            </footer>
-        </div >
-
+            <div className="content">
+                {loaded && (
+                    <>
+                        <DogForm
+                            onSubmitProp={updateDog}
+                            initialName={dog.name}
+                            initialAge={dog.age}
+                            initialBreed={dog.breed}
+                            initialColor={dog.color}
+                            initialDescription={dog.description}
+                        />
+                        {errors.map((err, index) => <p key={index}>{err}</p>)}
+                    </>
+                )}
+            </div>
+        </div>
     )
 }
-export default Create;
+export default EditDogProfile;
+
